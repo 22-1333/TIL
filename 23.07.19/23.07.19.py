@@ -145,6 +145,44 @@ numbers = [1, 2, 3, 4, 5]
 print(list(map(lambda x: x ** 2, numbers)))
 '''
 
-numbers = [1, 2, 3, 4, 5]
+# 8
 
-print(list(map(lambda x: x ** 2, numbers)))
+'''
+packing_values = 1, 2, 3, 4, 5
+print(packing_values) # (1, 2, 3, 4, 5)
+
+numbers = [1, 2, 3, 4, 5]
+a, *b, c = numbers
+
+print(a) # 1
+print(b) # [2, 3, 4]
+print(c) # 5
+'''
+
+# 9
+
+'''
+import math
+print(math.pi) # 3.141592653589793
+print(math.sqrt(4)) # 2.0
+
+from math import pi, sqrt
+print(pi) # 3.141592653589793
+print(sqrt(4)) # 2.0
+
+from random import *
+print(randint(1, 10)) # random number
+'''
+
+# 10
+
+'''
+import requests
+
+url = "https://random-data-api.com/api/v2/users"
+response = requests.get(url).json()
+
+print(response)
+
+print(response["address"]["country"])
+'''
