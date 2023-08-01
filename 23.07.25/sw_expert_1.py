@@ -1,54 +1,43 @@
-import copy
-
-def make_list(n, former_list):
-    next_list = []
-
-    global N
-
-    while n != N:
-    
-        for former in former_list:
-            for count in range(n + 1):                
-                former_copy = copy.deepcopy(former)
-                former_copy.insert(count, n + 1)
-
-                next_list.append(former_copy)
-
-        return make_list(n + 1, next_list)
-
-    if n == N:
-
-        return former_list
+import itertools
 
 T = int(input())
 
-for test_case in range(1, T + 1):
+for tc in range(1, T + 1):
     N = int(input())
     locations = list(map(int, input().split()))
 
     company_loc_x = locations.pop(2)
     company_loc_y = locations.pop(2)
 
-    locations.append(company_loc_x)
-    locations.append(company_loc_y)
-
-    all_cases = make_list(1, [[1]])
+    start_loc_x = locations.pop(0)
+    start_loc_y = locations.pop(0)
 
     shortest_distance = None
 
+    all_cases = list(itertools.permutations(list(n for n in range(N))))
+
     for case in all_cases:
+        
+        start_x = start_loc_x
+        start_y = start_loc_y
+
         distance_total = 0
-        start = 0
-        end = 0
+
         for case_number in case:
-            end = 2 * case_number
-            distance = abs(locations[start] - locations[end]) + abs(locations[start + 1] - locations[end + 1])
+            end_x = locations[case_number * 2]
+            end_y = locations[case_number * 2 + 1]
+
+            distance = abs(start_x - end_x) + abs(start_y - end_y)
 
             distance_total += distance
 
-            start = end
-        
-        distance = abs(locations[start] - locations[-2]) + abs(locations[start + 1] - locations[-1])
+            start_x = end_x
+            start_y = end_y
+
+        end_x = company_loc_x
+        end_y = company_loc_y
+
+        distance = abs(start_x - end_x) + abs(start_y - end_y)
         distance_total += distance
 
         if shortest_distance == None:
@@ -56,4 +45,4 @@ for test_case in range(1, T + 1):
         else:
             shortest_distance = min(distance_total, shortest_distance)
 
-print(shortest_distance)
+    print(f"#{tc} {shortest_distance}")
