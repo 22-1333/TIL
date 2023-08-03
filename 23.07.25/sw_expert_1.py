@@ -40,7 +40,7 @@ for tc in range(1, T + 1):
         distance = abs(start_x - end_x) + abs(start_y - end_y)
         distance_total += distance
 
-        if shortest_distance == None:
+        if shortest_distance is None:
             shortest_distance = distance_total
         else:
             shortest_distance = min(distance_total, shortest_distance)
