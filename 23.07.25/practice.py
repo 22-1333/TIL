@@ -7,9 +7,9 @@ def make_list(n, former_list):
     global N
 
     while n != N:
-    
+
         for former in former_list:
-            for count in range(n + 1):                
+            for count in range(n + 1):
                 former_copy = copy.deepcopy(former)
                 former_copy.insert(count, n + 1)
 
@@ -18,8 +18,12 @@ def make_list(n, former_list):
         return make_list(n + 1, next_list)
 
     if n == N:
-
         return former_list
+
+
+case_list = [[]] * 10
+case_list[0] = [1]
+
 
 T = int(input())
 
@@ -48,15 +52,13 @@ for test_case in range(1, T + 1):
             distance_total += distance
 
             start = end
-        
+
         distance = abs(locations[start] - locations[-2]) + abs(locations[start + 1] - locations[-1])
         distance_total += distance
 
-        print(distance_total)
-
-        if shortest_distance == None:
+        if shortest_distance is None:
             shortest_distance = distance_total
         else:
             shortest_distance = min(distance_total, shortest_distance)
 
-print(shortest_distance)
+    print(f"#{test_case} {shortest_distance}")
