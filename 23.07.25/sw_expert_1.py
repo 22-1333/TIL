@@ -31,6 +31,10 @@ for tc in range(1, T + 1):
 
             distance_total += distance
 
+            if shortest_distance:
+                if distance_total > shortest_distance:
+                    break
+
             start_x = end_x
             start_y = end_y
 
