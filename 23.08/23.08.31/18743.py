@@ -21,5 +21,3 @@ for frequency in frequency_list:
     max_sum += frequency * start
     start -= 1
 print(max_sum)
-print(letter_list)
-print(frequency_list)

@@ -170,8 +170,6 @@ for tc in range(1, T + 1):
 # 18708
 
 """
-
-"""
 n = int(input())
 meetings = []
 for _ in range(n):
@@ -186,3 +184,5 @@ for i in range(1, n):
         time = meetings[i][1]
 
 print(cnt)
+"""
+
