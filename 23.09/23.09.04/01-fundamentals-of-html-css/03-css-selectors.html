@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      color: red;
+    }
+    
+    /* change every h2 element text color to orange */
+    h2 {
+      color: orange;
+    }
+
+    h3, h4 {
+      color: blue;
+    }
+
+    .green {
+      color: green;
+    }
+
+    #purple {
+      color: purple;
+    }
+
+    /* child combinator */
+    .green > span {
+      font-size: 50px;
+    }
+
+    /* descendant combinator */
+    .green li {
+      color: brown;
+    }
+
+    .make-text-red {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="green">Heading</h1>
+  <h2>selector</h2>
+  <h3>practice</h3>
+  <h4>nice to meet you</h4>
+  <p id="purple">subject</p>
+  <ul class="green">
+    <li>python</li>
+    <li>algorithm</li>
+    <li>web
+      <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>PYTHON</li>
+      </ol>
+    </li>
+  </ul>
+  <p class="green">Lorem, <span>ipsum</span> dolor.</p>
+</body>
+
+</html>
