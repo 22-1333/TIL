@@ -1,0 +1,337 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+}
+  
+.frontpage {
+  height: 300px;
+  background-color: lightgray;
+  display: flex;
+}
+
+.side-link {
+  margin: 0;
+  padding-top: 25px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.icons {
+  margin: 5px 0;
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+.text-box {
+  margin: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-box > span {
+  margin: 7px;
+}
+
+.text-box > p {
+  margin: 0 7px;
+}
+
+.greeting {
+  font-size: medium;
+}
+
+.name {
+  font-weight: bolder;
+  font-size: large;
+}
+
+.experience-box {
+  font-size: x-small;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-box {
+  margin: 7px;
+  display: flex;
+  width: 70px;
+  border: 1px solid skyblue;
+  border-radius: 50%;
+  background-color: skyblue;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration-line: none;
+  font-size: small;
+}
+
+.picture-box {
+  margin-left: auto;
+  width: 500px;
+  background: linear-gradient(
+    to left,
+    rgba(211, 211, 211, 0.1) 10%,
+    rgba(211, 211, 211, 0.25) 25%,
+    rgba(211, 211, 211, 0.5) 50%,
+    rgba(211, 211, 211, 0.75) 75%,
+    rgba(211, 211, 211, 1) 100%
+  ), url(https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-12/221214-laptop-cafe-stock-mn-0915-71c3bf.jpg);
+  background-size: cover;
+}
+
+.intro {
+  padding: 50px 0;
+  display: flex;
+  justify-self: center;
+}
+
+.id-picture-box {
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.id-picture {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.intro-box {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.introduction {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: medium;
+}
+
+.about-me {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.about-me-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: x-small;
+}
+
+.list-title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 0;
+  font-size: x-small;
+  flex: 1 1 40%;
+}
+
+.list-content {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 0;
+  font-size: x-small;
+  flex: 1 1 40%;
+}
+
+.my-interest {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.my-interest-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-interest-content > span {
+  font-size: x-small;
+  font-weight: lighter;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-title {
+  margin: 10px;
+  color: black;
+  font-size: large;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.skill-box {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.list-group > img {
+  margin: 5px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.experience-title {
+  font-size: large;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.education-box {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-title {
+  font-size: medium;
+  font-weight: bolder;
+}
+
+.education-list {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px whitesmoke solid;
+}
+
+.education-name {
+  font-size: medium;
+}
+
+.education-detail {
+  color: gray;
+  font-size: x-small;
+}
+
+.education-period {
+  font-size: small;
+}
+
+.project-box {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-list{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px whitesmoke solid;
+}
+
+.project-title {
+  font-size: medium;
+  font-weight: bolder;
+  }
+
+.project-name {
+  font-size: medium;
+}
+
+.project-detail {
+  color: gray;
+  font-size: x-small;
+}
+
+.project-period {
+  font-size: small;
+}
+
+.contact {
+  margin-bottom: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-list {
+  display: flex;
+}
+
+.input-box {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-title {
+  font-size: large;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.quick-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  height: 50px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 570px) {
+  .side-link,
+  .picture-box
+  {
+    display: none;
+  }
+  .frontpage {
+    justify-content: center;
+  }
+  .text-box {
+    align-items: center;
+  }
+  .experience-box {
+    align-items: center;
+  }
+  .intro {
+    flex-direction: column;
+  }
+  .experience-list {
+    flex-direction: column;
+  }
+  .quick-box {
+    display: none;
+  }
+}
