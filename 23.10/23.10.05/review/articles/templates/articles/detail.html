@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>DETAIL</h2>
+  <h3>No.{{ article.pk }}</h3>
+  <hr>
+  <p>Title: {{ article.title }}</p>
+  <p>Content: {{ article.content }}</p>
+  <p>Created Time: {{ article.created_at }}</p>
+  <p>Updated Time: {{ article.updated_at }}</p>
+  <hr>
+  <a href="{% url "articles:update" article.pk %}">UPDATE</a>
+  <form action="{% url "articles:delete" article.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="delete">
+  </form>
+  <a href="{% url "articles:index" %}">[back]</a>
+</body>
+</html>
