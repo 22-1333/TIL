@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>댓글 수정</h1>
+  <form action="{% url "weathers:update" pk=pk num=num %}" method="POST">
+    {% csrf_token %}
+    <div>
+      <label for="content">내용: </label>
+      {{ form.content }}
+      <input type="hidden" name="problem_num" id="problem_num" value={{ num }}>
+    </div>
+    <input type="submit" value="수정">
+  </form>
+  <hr>
+  <a href="{% url 'weathers:problem' num=num %}">[back]</a>
+</body>
+</html>

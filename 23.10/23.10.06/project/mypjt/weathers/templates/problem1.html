@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 2000px;
+      font-size: 2px;
+    }
+    th {
+      background-color: #E2E2E2;
+      border-bottom: 1px solid #D3D3D3;
+      padding: 4px 0;
+    }
+    td {
+      border-bottom: 1px solid #D3D3D3;
+      padding: 4px 0;
+    }
+    .time {
+      font-size: 5px;
+    }
+    .replies {
+      font-size: 15px;
+    }
+    input {
+      font-size: 5px;
+    }
+    a {
+      font-size: 5px;
+    }
+  </style>
+
+  <h2>문제1. 데이터 읽어오기</h2>
+  <table>
+    <tr>
+      {% for column in df.columns %}
+        <th align="left">{{ column }}</th>
+      {% endfor %}
+    </tr>
+    <tr>
+      {% for row in df.values %}
+        <tr>
+          {% for value in row %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tr>
+  </table>
+
+  <hr>
+  <h4>댓글</h4>
+  <hr>
+  {% for reply in replies %}
+    {% if reply.problem_num == 1 %}
+    <p class='replies'>{{ reply.content }}</p>
+    <a href="{% url "weathers:update" pk=reply.pk num=1 %}">수정</a>
+    <form action="{% url "weathers:delete" pk=reply.pk num=1 %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="삭제">
+    </form>
+    <hr>
+    {% endif %}
+  {% endfor %}
+
+  <a href={% url "weathers:create" num=1 %}>새로운 댓글</a>
+{% endblock content %}
