@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>상품 상세 페이지</h1>
+<img src="{{ product.image }}" alt="...">
+<h5>{{ product.title }}</h5>
+<p>{{ product.description }}</p>
+<p>가격: \{{ product.price }}</p>
+
+{% if user.is_authenticated %}
+  {% if product in user.cart.all %}
+    <p>장바구니에 담겨있습니다.</p>
+  {% else %}
+    <p>장바구니에 담겨있지 않습니다.</p>
+  {% endif %}
+{% endif %}
+
+{% endblock content %}

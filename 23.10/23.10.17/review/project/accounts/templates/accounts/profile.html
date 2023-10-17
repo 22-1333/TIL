@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ user }} 님의 페이지</h1>
+
+<h3>장바구니에 담은 상품들</h3>
+
+{% for product in user.cart.all %}
+<p>{{ forloop.counter }}번째 상품</p>
+<a href="{% url "shop:detail" product.id %}">{{ product.title }}</a>
+<p></p>
+<a href="{% url "shop:addcart" product.id %}">제외하기</a>
+<hr>
+{% empty %}
+<p>담긴 상품이 없습니다.</p>
+{% endfor %}
+
+{% endblock content %}
