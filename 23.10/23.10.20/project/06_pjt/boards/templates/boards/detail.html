@@ -64,8 +64,9 @@
     {% if comments|length == 0 %} 댓글이 없습니다.
     {% else %}
       {% for comment in comments %}
+      <p><a href="{% url 'accounts:profile' comment.author.id %}"><b>{{ comment.author }}</b></a></p>
       <div class="my-3 d-flex justify-content-between">
-        <div>
+        <div class="my-auto">
           <span>{{ comment.content }}</span>
           <span class="mx-5">({{ comment.created_at }})</span>
         </div>

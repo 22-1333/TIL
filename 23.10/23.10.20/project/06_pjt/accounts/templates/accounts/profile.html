@@ -5,16 +5,23 @@
   <div class="d-flex justify-content-between">
     <h1 class="my-auto">{{ profile_user }} 님의 프로필</h1>
     <div class="my-auto">
-      <p class="my-auto">팔로잉: 0 / 팔로워: 0</p>
-      <form action="{% url "accounts:follow" profile_user.id %}">
-        {% if profile_user.id in user.following.all %}
-          <button type="button" class="btn btn-info">Unfollow</button>
-        {% else %}
-          <button type="button" class="btn btn-info">Follow</button>
-        {% endif %}
-      </form>
+      <span class="my-auto">팔로잉: {{ profile_user.followings.count }} / 팔로워: {{ profile_user.followers.count }}</span>
     </div>
   </div>
+  {% if user != profile_user %}
+    <form action="{% url "accounts:follow" profile_user.id %}" method="POST" class="m-1">
+      {% csrf_token %}
+      {% if user in profile_user.followers.all %}
+        <div class="mt-4 d-grid gap-2">
+          <button class="btn btn-primary" type="submit"><b>Unfollow</b></button>
+        </div>
+      {% else %}
+        <div class="mt-4 d-grid gap-2">
+          <button class="btn btn-primary" type="submit"><b>Follow</b></button>
+        </div>
+      {% endif %}
+    </form>
+  {% endif %}
   
   <hr>
   <h2 class="my-auto">유저가 쓴 글</h2>
@@ -44,4 +51,13 @@
 
   <hr>
   <h2 class="my-auto">팔로워</h2>
+  {% if profile_user.followers.count == 0 %}
+  <p class="my-4">팔로워가 없습니다.</p>
+  {% else %}
+  {% for follower in profile_user.followers.all %}
+    <div class="my-4">
+      <a href="{% url 'accounts:profile' follower.id %}">{{ follower }}</a>
+    </div>
+  {% endfor %}
+  {% endif %}
 {% endblock content %}
