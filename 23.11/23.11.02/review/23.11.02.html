@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title></title>
+  <style>
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>할 일 목록</h1>
+    
+    <div>
+      <input type="text" v-model="newTodo" @keyup.enter="addTodo">
+      <button v-on:click="addTodo">추가</button>
+      <ul>
+        <!-- vue 는 렌더링 시 "변경된 부분만" 최소한으로 재렌더링함 -->
+        <!-- 즉, 내가 지금 당장 필요없는 부분은 신경쓰지 않는다. -->
+        <!-- ex) 3번째 todo 를 삭제 -->
+        <!-- deleteTodo(현재 기준 3 index) -->
+        <!-- toggleTodoStatus(현재 기준 3번째 todo - 사실은 4번째 todo) -->
+        <!-- 내부적으로 효율적인 구조로 인해서 우리가 신경써야할 부분이 많다! -->
+        <!-- 내부적인 구조: virtual DOM 검색해보기 -->
+        <li v-for="(todo, index) in todos" :key="todo.id" @click="toggleTodoStatus(todo)" :class="{ 'completed': todo.completed }">
+          {{ todo.text }}
+          <button @click="deleteTodo(index)">삭제</button>
+        </li>
+      </ul>
+
+      <!-- <button v-if="todos.value.filter((todo) => todo.completed).length > 0" @click="deleteCompletedTodos">완료된 할 일 삭제</button> -->
+      <!-- 최대한 자바스크립트 코드는 template 쪽에 쓰지 마라! -->
+      
+      <!-- v-if: 요소 자체가 아예 안 보임 -->
+      <!-- 처음에 없다: 눈에 보이지 않아도 되는 상황이 많다면 유리함 -->
+      <!-- 즉, 자주 변경되거나 보여야 한다면 v-if 는 비효율적이다. -->
+
+      <!-- v-show: display none 상태 - 우리 눈에만 안 보인다. -->
+      <!-- 우리 눈에 보이지 않지만, DOM 에는 존재한다. -->
+      <!-- 즉, 안 보이는 상황이 많다면 v-show 가 비효율적이다. -->
+      <button v-if="todoCount" @click="deleteCompletedTodos">완료된 할 일 삭제</button>
+    </div>
+  </div>
+
+  <script src="./23.11.02.js"></script>
+</body>
+</html>
