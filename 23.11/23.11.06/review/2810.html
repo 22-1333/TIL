@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">
+    <h1>다양한 전시 정보</h1>
+    <label for="isActive">전시 중인 정보만 보기</label>
+    <input type="checkbox" id="isActive" @click="isActive = !isActive">
+    <template v-if="isActive">
+      <ul v-for="exhibitionInfo in isActiveExhibition" :key="exhibitionInfo.name">
+        <li>
+          <h3>{{ exhibitionInfo.name }}</h3>
+          <hr>
+          <p>{{ exhibitionInfo.place }}</p>
+          <p>가격 : {{ exhibitionInfo.price }}</p>
+          <hr>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <ul v-for="exhibitionInfo in exhibitionInfos" :key="exhibitionInfo.name">
+        <li>
+          <h3>{{ exhibitionInfo.name }}</h3>
+          <hr>
+          <p>{{ exhibitionInfo.place }}</p>
+          <p>가격 : {{ exhibitionInfo.price }}</p>
+          <hr>
+        </li>
+      </ul>
+    </template>
+  </div>
+
+  <script>  
+    const { createApp, ref, computed } = Vue
+
+    const app = createApp({
+      setup() {
+        const exhibitionInfos = ref([
+          { name: "무라카미 다카시 : 무라카시좀비", place: "부산 시립 미술관", price: 1000, onDisplay: '전시 중'},
+          { name: "마우라치오 카텔란 개인전", place: "리움 미술관", price: 30000, onDisplay: '전시 중'},
+          { name: "조선백자전", place: "리움 미술관", price: 30000, onDisplay: '전시 중'},
+          { name: "한국 실험미술 1960 - 1970", place: "국립현대미술관", price: 0, onDisplay: '전시 중'},
+          { name: "에드워드 호퍼 : 길 위에서", place: "서울 시립 미술관", price: 1000, onDisplay: '전시 종료'},
+          { name: "알렉산더 칼더 x 이우환", place: "국제갤러리 서울점", price: 15000, onDisplay: '전시 종료'}
+        ])
+
+        const isActiveExhibition = computed(() => exhibitionInfos.value.filter(exhibitionInfo => exhibitionInfo.onDisplay === '전시 중'))
+
+        const isActive = ref(false)
+
+        return {
+          exhibitionInfos,
+          isActiveExhibition,
+          isActive
+        } 
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>
