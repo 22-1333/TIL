@@ -14,3 +14,7 @@
     deposit: Object
   })
 </script>
+
+<style scoped>
+
+</style>

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <input type="number" v-model="inputWon" @keyup="input">
-    <p>{{ output }}</p>
+    <h1>환율 계산기</h1>
+    <input type="number" v-model="koreaMoney" @keyup="inputKorea">
+    <input type="number" v-model="otherMoney" @keyup="inputOther">
   </div>
 </template>
 
@@ -11,17 +12,29 @@
   import axios from 'axios'
 
   const store = useCounterStore()
-  const output = ref(0)
-  const inputWon = ref()
+  const koreaMoney = ref()
+  const otherMoney = ref()
 
-  const input = (() => {
+  const inputKorea = (() => {
     axios({
       method: 'get',
       url: `${store.DRF_URL}/exchange/USD/`
     })
       .then((response) => {
-        console.log(typeof(response.data.rate))
-        output.value = response.data.rate * inputWon.value
+        otherMoney.value = response.data.rate * koreaMoney.value
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  })
+
+  const inputOther = (() => {
+    axios({
+      method: 'get',
+      url: `${store.DRF_URL}/exchange/USD/`
+    })
+      .then((response) => {
+        koreaMoney.value = otherMoney.value / response.data.rate
       })
       .catch((error) => {
         console.error(error)

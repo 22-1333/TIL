@@ -14,3 +14,7 @@
     installment_saving: Object
   })
 </script>
+
+<style scoped>
+
+</style>

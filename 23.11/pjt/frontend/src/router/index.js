@@ -6,6 +6,9 @@ import BankView from '@/views/BankView.vue'
 import DepositListView from '@/views/DepositListView.vue'
 import InstallmentSavingListView from '@/views/InstallmentSavingListView.vue'
 import InterestDetailView from '@/views/InterestDetailView.vue'
+import SignUpView from '@/views/SignUpView.vue'
+import LogInView from '@/views/LogInView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +47,21 @@ const router = createRouter({
       path: '/interest/:fin_prdt_cd',
       name: 'interestDetail',
       component: InterestDetailView
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUpView
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LogInView
+    },
+    {
+      path: '/profile/:username',
+      name: 'profile',
+      component: ProfileView
     }
   ]
 })

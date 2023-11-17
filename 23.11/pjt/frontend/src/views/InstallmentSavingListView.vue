@@ -2,8 +2,7 @@
   <div>
     <h2>Installment Saving List</h2>
     <select v-model="selectedBank" @change="selectBank">
-      <option value="">선택하세요.</option> 
-      <option v-for="deposit in store.installmentSavingList" :value="deposit.fin_co_no">{{ deposit.kor_co_nm }}</option>
+      <option v-for="bank in store.installmentSavingBankList" :value="bank">{{ bank }}</option>
     </select>
     <div v-if="!isSelected">
       <InstallmentSavingListItem v-for="installment_saving in store.installmentSavingList" :key="installment_saving.fin_prdt_cd" :installment_saving="installment_saving" />
@@ -37,7 +36,7 @@
   })
 
   const isSameBank = ((value) => {
-    return value.fin_co_no === selectedBank.value
+    return value.kor_co_nm === selectedBank.value
   })
 </script>
 
