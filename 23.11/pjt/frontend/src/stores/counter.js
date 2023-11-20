@@ -5,7 +5,9 @@ import axios from 'axios'
 
 export const useCounterStore = defineStore('counter', () => {
   const router = useRouter()
-
+  
+  const token = ref(null)
+  const loginUsername = ref(null)
   const DRF_URL = 'http://127.0.0.1:8000'
   
   const depositList = ref([])
@@ -53,7 +55,6 @@ export const useCounterStore = defineStore('counter', () => {
       })
   }
 
-  const token = ref(null)
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -94,10 +95,13 @@ export const useCounterStore = defineStore('counter', () => {
     })
       .then((response) => {
         token.value = response.data.key
-        console.log('로그인 성공')
+        loginUsername.value = username
+      })
+      .then((response) => {
+        router.go(-1)
       })
       .catch((error) => {
-        console.error(error)
+        window.alert('로그인에 실패하였습니다.')
       })
   }
 
@@ -108,12 +112,14 @@ export const useCounterStore = defineStore('counter', () => {
     })
       .then((response) => {
         token.value = null
-        console.log('로그아웃 성공')
+        loginUsername.value = null
       })
       .catch((error) => {
         console.error(error)
       })
+    
+    router.push({ name: 'home' })
   }
 
-  return { DRF_URL, depositList, installmentSavingList, getDepositList, getInstallmentSavingList, depositBankList, installmentSavingBankList, token, isLogin, signUp, logIn, logOut }
+  return { DRF_URL, depositList, installmentSavingList, getDepositList, getInstallmentSavingList, depositBankList, installmentSavingBankList, token, isLogin, loginUsername, signUp, logIn, logOut }
 }, { persist: true })

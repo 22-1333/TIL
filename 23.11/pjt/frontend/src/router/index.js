@@ -9,6 +9,12 @@ import InterestDetailView from '@/views/InterestDetailView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import LogInView from '@/views/LogInView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import MyPageView from '@/views/MyPageView.vue'
+import UpdatePasswordView from '@/views/UpdatePasswordView.vue'
+import UpdateProfileView from '@/views/UpdateProfileView.vue'
+import ArticleView from '@/views/ArticleView.vue'
+import DetailView from '@/views/ArticleDetailView.vue'
+import CreateView from '@/views/ArticleCreateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,7 +68,37 @@ const router = createRouter({
       path: '/profile/:username',
       name: 'profile',
       component: ProfileView
-    }
+    },
+    {
+      path: '/mypage/:username',
+      name: 'mypage',
+      component: MyPageView
+    },
+    {
+      path: '/updatepassword/:username',
+      name: 'updatepassword',
+      component: UpdatePasswordView
+    },
+    {
+      path: '/updateprofile/',
+      name: 'updateprofile',
+      component: UpdateProfileView
+    },
+    {
+      path: '/article',
+      name: 'article',
+      component: ArticleView
+    },
+    {
+      path: '/articles/:id',
+      name: 'DetailView',
+      component: DetailView
+    },
+    {
+      path: '/create',
+      name: 'CreateView',
+      component: CreateView
+    },
   ]
 })
 

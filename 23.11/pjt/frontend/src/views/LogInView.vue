@@ -1,12 +1,21 @@
 <template>
-  <div>
-    <h1>로그인</h1>
-    <form @submit.prevent="logIn">
-      <input type="text" v-model.trim="username">
-      <input type="password" v-model.trim="password">
-      <input type="submit">
+  <div class="login-container">
+    <h5><strong>HomePage에 로그인하세요</strong></h5>
+    <div class="input-container">
+      <input type="text" id="username" class="input-field" placeholder=" " v-model.trim="username" required>
+      <label for="username" class="input-label">username</label>
+      <span class="input-icon"><i class="fas fa-search"></i></span>
+    </div>
+    <div class="input-container">
+      <input type="password" id="password" class="input-field" placeholder=" " v-model.trim="password" required>
+      <label for="password" class="input-label">비밀번호</label>
+      <span class="input-icon"><i class="fas fa-search"></i></span>
+    </div>
+    <form class="login-button-container" @submit.prevent="logIn">
+      <input type="submit" class="login-button">
     </form>
   </div>
+
 </template>
 
 <script setup>
@@ -26,6 +35,89 @@
   }
 </script>
 
-<style>
+<style scoped>
+.login-container {
+  text-align: center;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+h5 {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.input-container {
+  position: relative;
+  margin: 10px;
+  width: 40%;
+  min-width: 400px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #111;
+}
+
+.input-label {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 16px;
+  color: #999;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #ccc;
+}
+
+.login-button-container {
+  margin-top: 30px;
+  width: 40%;
+  min-width: 400px;
+  position: relative;
+}
+
+.login-button {
+  position: absolute;
+  right: 0;
+  padding: 10px 15px;
+  background-color: #d3d3d3; 
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #a9a9a9;
+}
 </style>
