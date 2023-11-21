@@ -2,10 +2,10 @@
   <header class="header">
     <nav class="navbar">
       <div class="left">
-        <RouterLink class="nav-item" :to="{ name: 'home' }">Home</RouterLink>
+        <RouterLink class="nav-item" :to="{ name: 'home' }"><strong>Home</strong></RouterLink>
       </div>
       <div class="login-items" v-if="store.isLogin">
-        <RouterLink class="nav-item" :to="{ name: 'article' }">Article</RouterLink>
+        <RouterLink class="nav-item" :to="{ name: 'mypage', params: {username: store.loginUsername} }">MyPage</RouterLink>
         <form class="logout" @submit.prevent="store.logOut">
           <input class="nav-item" type="submit" value="logOut">
         </form>
@@ -30,13 +30,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Noto Sans KR';
 }
 </style>
 
 <style scoped>
 .header {
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #f8f9fa; /* 연한 회색 배경 */
   display: flex;
   justify-content: center; /* 중앙 정렬 */
@@ -53,14 +54,15 @@
 .login-items {
   display: flex;
   align-items: center;
+  margin-right: 2px;
 }
 
 .nav-item {
-  margin: 0 15px; /* 메뉴 항목 간격 조절 */
+  height: 80%;
+  margin: 0 0px; /* 메뉴 항목 간격 조절 */
   font-size: 16px; /* 폰트 크기 */
   color: #333; /* 폰트 색상 */
   text-decoration: none; /* 밑줄 제거 */  
-  padding: 5px 10px; /* 메뉴 항목의 패딩 */
   transition: color 0.3s; /* 색상 변화 애니메이션 */
   position: relative;
 }
@@ -101,7 +103,7 @@
   background-color: #333; /* 버튼 배경색을 검은색으로 설정 */
   color: white; /* 글자색을 흰색으로 설정 */
   border: none; /* 테두리 제거 */
-  padding: 10px 20px; /* 상하 10px, 좌우 20px 패딩 설정 */
+  padding: 5px 15px; /* 상하 10px, 좌우 20px 패딩 설정 */
   border-radius: 20px; /* 타원형 모양을 만들기 위해 border-radius 설정 */
   cursor: pointer; /* 마우스 오버 시 커서 변경 */
   font-size: 16px; /* 폰트 크기 설정 */
@@ -113,7 +115,8 @@
 }
 
 .logout {
-  margin-left: 0;
-  margin-right: 0;
+  height: 70%;
+  padding: 5px 15px; /* 상하 10px, 좌우 20px 패딩 설정 */
+  margin: 0;
 }
 </style>

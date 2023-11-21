@@ -15,12 +15,16 @@
       <input type="submit" class="login-button">
     </form>
   </div>
+  <div class="signup">
+    <p>ID가 없으신가요? <span><RouterLink class="signup-link" :to="{ name: 'signup' }">지금 만드세요. </RouterLink>↗</span></p>
+  </div>
 
 </template>
 
 <script setup>
   import { ref } from 'vue'
   import { useCounterStore } from '@/stores/counter'
+  import { RouterLink } from 'vue-router'
 
   const store = useCounterStore()
   const username = ref(null)
@@ -59,7 +63,7 @@ h5 {
 
 .input-field {
   width: 100%;
-  padding: 10px 40px 10px 10px;
+  padding: 10px 40px 10px 20px;
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 16px;
@@ -102,12 +106,11 @@ h5 {
   margin-top: 30px;
   width: 40%;
   min-width: 400px;
-  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .login-button {
-  position: absolute;
-  right: 0;
   padding: 10px 15px;
   background-color: #d3d3d3; 
   color: #fff; 
@@ -119,5 +122,17 @@ h5 {
 
 .login-button:hover {
   background-color: #a9a9a9;
+}
+
+.signup {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+}
+
+.signup-link {
+  text-decoration: none;
 }
 </style>
