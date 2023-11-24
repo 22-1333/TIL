@@ -23,9 +23,10 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
 
     path('dj_rest_auth/', include('dj_rest_auth.urls')),
-    path('dj_rest_auth/signup/', include('dj_rest_auth.registration.urls')),
+    path('dj_rest_auth/registration/', include('dj_rest_auth.registration.urls')),
 
     path('article/', include('articles.urls')),
     path('interest/', include('interests.urls')),
     path('exchange/', include('exchanges.urls')),
+    path('bankfinders/', include('bankfinders.urls')),
 ]

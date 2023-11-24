@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'articles',
     'interests',
     'exchanges',
+    'bankfinders',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -58,6 +59,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'allauth.account.middleware.AccountMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
@@ -66,9 +69,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'

@@ -28,6 +28,7 @@
     <div class="title"><strong>환율 계산기</strong></div>
     <br>
     <p><strong>세계 여러 나라의 환율</strong>의 계산을 누구보다 <strong>간단</strong>하게 도와드릴게요.</p>
+    <br>
   </div>
   <div class="body">
     <div class="calculator-container">
@@ -63,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div v-if="calculate" class="result" :class="{ 'typing-animation': triggerAnimation }">
+      <div v-if="calculate" class="result">
         입력하신 금액은 총 <span class="amount"><strong>{{ calculate }} {{ currencyUnit }}</strong></span>입니다.
         <div class="result-detail">
           ※ 계산된 결과는 십의 자리에서 반올림하여 표기됩니다.
@@ -71,10 +72,13 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from 'vue'
+  import { ref, onMounted, computed, watch } from 'vue'
   import { useCounterStore } from '@/stores/counter'
   import axios from 'axios'
 
@@ -254,5 +258,4 @@ input::-webkit-inner-spin-button {
 .calculator-space {
   height: 150px;
 }
-
 </style>

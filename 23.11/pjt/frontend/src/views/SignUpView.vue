@@ -13,11 +13,11 @@
       <div class="signup">
         <div class="namebox">
           <div class="input-container name">
-            <input id="lastname" class="input-field" placeholder=" " type="text">
+            <input id="lastname" class="input-field" placeholder=" " type="text" v-model.trim="lastname">
             <label for="lastname" class="input-label">성</label>
           </div>
           <div class="input-container name">
-            <input id="firstname" class="input-field" placeholder=" " type="text">
+            <input id="firstname" class="input-field" placeholder=" " type="text" v-model.trim="firstname">
             <label for="firstname" class="input-label">이름</label>
           </div>
         </div>
@@ -36,6 +36,36 @@
             <input id="password2" class="input-field" type="password" placeholder=" " v-model.trim="password2">
             <label for="password2" class="input-label">비밀번호 확인</label>
           </div>
+          <br>
+          <br>
+          <hr>
+          <br>
+          <br>
+          <div class="input-container">
+            <input id="email" class="input-field" type="text" placeholder=" " v-model.trim="email">
+            <label for="email" class="input-label">id@example.com</label>
+          </div>
+          <br>
+          <br>
+          <hr class="sign-up-hr">
+          <br>
+          <br>
+          <div class="input-container">
+            <input id="nickname" class="input-field" type="text" placeholder=" " v-model.trim="nickname">
+            <label for="nickname" class="input-label">닉네임</label>
+          </div>
+          <div class="input-container">
+            <input id="age" class="input-field" type="number" placeholder=" " v-model.trim="age">
+            <label for="age" class="input-label">나이</label>
+          </div>
+          <div class="input-container">
+            <input id="money" class="input-field" type="number" placeholder=" " v-model.trim="money">
+            <label for="money" class="input-label">보유 자산</label>
+          </div>
+          <div class="input-container">
+            <input id="salary" class="input-field" type="number" placeholder=" " v-model.trim="salary">
+            <label for="salary" class="input-label">월 수입</label>
+          </div>
           <div class="button-container">
             <button class="signup-button" type="submit">생성</button>
           </div>
@@ -43,22 +73,49 @@
       </div>
     </div>
   </div>
+  <br>
 </template>
 
 <script setup>
   import { ref } from 'vue'
   import { useCounterStore } from '@/stores/counter'
+  import { onMounted } from 'vue'
 
   const username = ref(null)
   const password1 = ref(null)
   const password2 = ref(null)
+  const email = ref("")
+  const firstname = ref("")
+  const lastname = ref("")
+  const nickname = ref("")
+  const age = ref(null)
+  const money = ref(null)
+  const salary = ref(null)
   const store = useCounterStore()
+  
+  // 회원가입 시 소요된 시간
+  let enterTime
+  onMounted(() => {
+    enterTime = Date.now()
+  })
+  let duration
 
   const signUp = function () {
+    const exitTime = Date.now()
+    duration = exitTime - enterTime
+
     const payload = {
       username: username.value,
       password1: password1.value,
-      password2: password2.value
+      password2: password2.value,
+      email: email.value,
+      first_name: firstname.value,
+      last_name: lastname.value,
+      nickname: nickname.value,
+      age: age.value,
+      money: money.value,
+      salary: salary.value,
+      duration: duration
     }
     store.signUp(payload)
   }
@@ -84,9 +141,13 @@
   flex-direction: column-reverse;
 }
 
-hr {
+.sign-up-hr {
   margin-top: 0;
   margin-bottom: 20px
+}
+
+.middle {
+  width: 150%;
 }
 
 .signup-box {
@@ -118,7 +179,7 @@ h5 {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 10px 40px 10px 10px;
+  padding: 10px 40px 10px 20px;
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 16px;
@@ -157,6 +218,12 @@ h5 {
   color: #999;
   transition: all 0.3s ease;
   pointer-events: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .name {

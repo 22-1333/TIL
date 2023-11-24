@@ -1,18 +1,5 @@
 <template>
   <div id="map" style="width:100%;height:100%;"></div>
-
-  <!-- <select v-model="si" @change="search">
-    <option value="서울특별시">서울특별시</option>
-    <option value="경기도">경기도</option>
-  </select>
-  <select v-model="gu" @change="search">
-    <option value="강남구">강남구</option>
-    <option value="성동구">성동구</option>
-  </select>
-  <select v-model="bank" @change="search">
-    <option value="우리은행">우리은행</option>
-    <option value="신한은행">신한은행</option>
-  </select> -->
 </template>
 
 <script setup>
@@ -27,7 +14,6 @@
   var infowindow = new kakao.maps.InfoWindow({zIndex:1})
 
   onMounted(() => {
-    console.log(props.si)
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -37,11 +23,9 @@
     // 지도를 생성합니다    
     var map = new kakao.maps.Map(mapContainer, mapOption)
   })
-
-  
   
   const search = () => {
-    if (props.si && props.gu && props.bank) {
+    if (props.si != "" && props.gu != "" && props.bank != "") {
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -93,7 +77,7 @@
       }
     }
 
-  watch(() => [props.si, props.gu, props.bank], ([newSi, newGu, newBank]) => {
+  watch(() => [props.gu, props.bank], ([newGu, newBank]) => {
     search()
   })
     

@@ -5,11 +5,17 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         from allauth.account.utils import user_email, user_field, user_username
 
         data = form.cleaned_data
+        username = data.get("username")
         first_name = data.get("first_name")
         last_name = data.get("last_name")
         email = data.get("email")
-        username = data.get("username")
-        registered_product = data.get("registered_products")
+
+        nickname = data.get("nickname")
+        age = data.get("age")
+        money = data.get("money")
+        salary = data.get("salary")
+
+        duration = data.get("duration")
 
         user_email(user, email)
         user_username(user, username)
@@ -17,12 +23,18 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             user_field(user, "first_name", first_name)
         if last_name:
             user_field(user, "last_name", last_name)
-        if registered_product:
-            registered_products = user.registered_products.split(',')
-            registered_products.append(registered_product)
-            if len(registered_products) > 1:
-                registered_products = ','.join(registered_products)
-            user_field(user, "registered_products", registered_products)
+
+        if nickname:
+            user_field(user, "nickname", nickname)
+        if age:
+            user.age = age
+        if money:
+            user.money = money
+        if salary:
+            user.salary = salary
+        if duration:
+            user.duration = duration
+
         if "password1" in data:
             user.set_password(data["password1"])
         else:

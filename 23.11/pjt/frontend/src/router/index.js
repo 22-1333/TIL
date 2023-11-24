@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import InterestView from '@/views/InterestView.vue'
 import ExchangeView from '@/views/ExchangeView.vue'
 import BankView from '@/views/BankView.vue'
 import DepositListView from '@/views/DepositListView.vue'
@@ -15,6 +14,7 @@ import UpdateProfileView from '@/views/UpdateProfileView.vue'
 import ArticleView from '@/views/ArticleView.vue'
 import DetailView from '@/views/ArticleDetailView.vue'
 import CreateView from '@/views/ArticleCreateView.vue'
+import ArticleEdit from '@/views/ArticleEditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,11 +23,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
-    },
-    {
-      path: '/interest',
-      name: 'interest',
-      component: InterestView
     },
     {
       path: '/exchange',
@@ -95,11 +90,27 @@ const router = createRouter({
       component: DetailView
     },
     {
+      path: '/articles/edit/:id',
+      name: 'ArticleEdit',
+      component: ArticleEdit
+    },
+    {
       path: '/create',
       name: 'CreateView',
       component: CreateView
     },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ top: 0 });
+        }, 300); // Adjust the timeout to match your transition duration
+      });
+    }
+  }  
 })
 
 export default router

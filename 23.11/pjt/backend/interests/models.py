@@ -18,3 +18,11 @@ class Product(models.Model):
     dcls_end_day = models.TextField(null=True, blank=True)
     fin_co_subm_day = models.TextField(null=True, blank=True)
     product_type = models.IntegerField(null=True, blank=True)  # 0: 예금 / 1: 적금
+
+
+class Option(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='options')
+    intr_rate_type = models.TextField()
+    save_trm = models.TextField()
+    intr_rate = models.FloatField(null=True, blank=True)
+    intr_rate2 = models.FloatField(null=True, blank=True)
